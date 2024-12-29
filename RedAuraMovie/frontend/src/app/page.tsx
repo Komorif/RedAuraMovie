@@ -22,6 +22,7 @@ interface Video {
   description: string;
   main_genre: string;
   genre: string[];
+  rating: number;
 }
 
 function groupByGenre(videos: Video[]): Record<string, Video[]> {
@@ -68,13 +69,13 @@ const AnimeVideoComponent: React.FC = () => {
     }
 
     try {
-      const response = await axios.get<Video[]>('http://localhost:80', {
+      const response = await axios.get<Video[]>('http://localhost', {
         headers: { 'Authorization': `Bearer ${accessToken}` },
       });
 
       const updatedVideos = response.data.map((video) => ({
         ...video,
-        image: `http://localhost/static/${video.main_genre.toLowerCase()}/${video.title_en.toLowerCase().replace(/ /g, "_")}.jpg`,
+        image: `http://localhost/static/${video.main_genre.toLowerCase()}/${video.title_en.toLowerCase().replace(/ /g, "_")}/${video.title_en.toLowerCase().replace(/ /g, "_")}.jpg`,
       }));
       
       setAnimeVideos((prevVideos) => [...updatedVideos, ...prevVideos]);
@@ -132,7 +133,6 @@ const AnimeVideoComponent: React.FC = () => {
                             <div className={styles.card}>
 
                               <div className={styles.imgBx}>
-
                                 {video.image && (
                                   <img
                                     className={styles.animeImage}
@@ -147,6 +147,7 @@ const AnimeVideoComponent: React.FC = () => {
                                     <div className={styles.color} onClick={() => handleViewButton(video.main_genre, video.title_en)} style={{ cursor: 'pointer' }}>
                                       <h3>{video.episode} эпизод</h3>
                                     </div>
+                                    <p>{video.rating}</p>
 
                                     <div className={styles.size}>
                                       <span>{video.date}</span>

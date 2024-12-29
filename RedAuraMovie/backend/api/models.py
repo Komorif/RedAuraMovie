@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 
 from django.templatetags.static import static
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from multiselectfield import MultiSelectField
 from django.utils.text import slugify
 
@@ -45,6 +45,31 @@ GENRE_MAIN_CHOICES = [
     ("films", "Фильмы"),
 ]
 
+COUNTRY_CHOICES = [
+    ("russia", "Россия"),
+    ("ussr", "СССР"),
+    ("usa", "США"),
+    ("kazakhstan", "Казахстан"),
+    ("france", "Франция"),
+    ("south_korea", "Южная Корея"),
+    ("united_kingdom", "Великобритания"),
+    ("japan", "Япония"),
+    ("italy", "Италия"),
+    ("spain", "Испания"),
+    ("germany", "Германия"),
+    ("turkey", "Турция"),
+    ("sweden", "Швеция"),
+    ("denmark", "Дания"),
+    ("norway", "Норвегия"),
+    ("hong_kong", "Гонконг"),
+    ("australia", "Австралия"),
+    ("belgium", "Бельгия"),
+    ("netherlands", "Нидерланды"),
+    ("greece", "Греция"),
+    ("austria", "Австрия"),
+]
+
+
 class ModelVideo(models.Model):
     title_en = models.CharField(max_length=60)
     title_ru = models.CharField(max_length=60)
@@ -56,8 +81,12 @@ class ModelVideo(models.Model):
     description = models.CharField()
     main_genre = models.CharField(max_length=50, choices=GENRE_MAIN_CHOICES, default="series")
     genre = MultiSelectField(max_length=50, choices=GENRE_CHOICES, default="Comedy")
+    country = MultiSelectField(max_length=50, choices=COUNTRY_CHOICES, default="usa")
 
-    slug = models.SlugField(blank=True, null=True)
+    rating = models.FloatField(default=0, validators=[MinValueValidator(0.1),
+                                             MaxValueValidator(10)])
+
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title_en)

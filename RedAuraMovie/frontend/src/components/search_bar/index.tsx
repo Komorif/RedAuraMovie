@@ -6,7 +6,7 @@ const alumni_sans = Alumni_Sans({ subsets: ["latin"] });
 
 export default function SearchBar() {
   return (
-    <div className={alumni_sans.className}>
+    <div className={alumni_sans.className}> 
       <SearchInput />
       <div>
         <div className={styles.search_string}>

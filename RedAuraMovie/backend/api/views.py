@@ -26,7 +26,7 @@ class VideoView(APIView):
 
     def get(self, request):
         output = [
-            {                
+            {
                 "title_en": video.title_en,
                 "title_ru": video.title_ru,
                 "season": video.season,
@@ -37,7 +37,8 @@ class VideoView(APIView):
                 "description": video.description,
                 "main_genre": video.main_genre,
                 "genre": video.genre,
-
+                "country": video.country,
+                "rating": video.rating, 
             } for video in ModelVideo.objects.all()
         ]
         return Response(output)
