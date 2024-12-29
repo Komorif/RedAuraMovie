@@ -1,0 +1,77 @@
+.login{
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  padding: 300 200px;  
+  border: 10px solid #ccc; 
+  border-radius: 50px; 
+  font-size: 30px;
+  margin: 120px;
+  width: 500px; 
+  height: 490px;
+  transition: 0.5s;
+}
+
+.login:hover{
+	padding: 300 250px;  
+	margin: 120px;
+	width: 550px; 
+	height: 550px;
+}
+
+.register{	
+	display: flex;
+	flex-direction: column; 
+	align-items: center;
+	border: 10px solid #ccc; 
+	border-radius: 50px; 
+	font-size: 30px;
+	padding: 20px; 
+	height: 490px; 
+	width: 500px; 
+	margin-left: 7%;
+	transition: 0.5s;
+}
+
+.register:hover{	
+	padding: 40px; 
+	height: 550px; 
+	width: 550px; 
+	transition: 0.5s;
+}
+
+
+.logcontainer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 78vh;
+}
+
+.accept{
+	font-size: 30px;
+	margin-top: 30px;
+	align-self: center;
+	border-radius: 15px;
+	background-color: #580e0e;
+	padding: 0px 125px;
+}
+
+.accept:hover{
+	background-color: #5E5694;
+}
+
+.return{
+	font-size: 49px;
+	padding-left: 15%;
+}
+
+.forwhat{
+	font-size: 28px;
+	font-style: italic;
+	text-decoration: underline;
+	margin-left: 47%;
+}
+
+
+
